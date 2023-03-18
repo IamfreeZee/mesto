@@ -3,13 +3,23 @@
   background-color: #000;
   width: 24px;
   height: 24px;
-  border: none;
+  border: 1px solid #fff;
   margin-left: 18px;
   padding: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
 }
 
 .profile__button-edit:hover {
-  cursor: pointer;
   opacity: 0.6;
   transition: 0.5s;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__button-edit {
+    width: 18px;
+    height: 18px;
+    margin-left: 10px;
+  }
 }

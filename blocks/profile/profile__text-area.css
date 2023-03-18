@@ -3,3 +3,9 @@
   display: flex;
   align-items: baseline;
 }
+
+@media screen and (max-width: 767px) {
+  .profile__text-area {
+    margin: 22px 0 36px;
+  }
+}

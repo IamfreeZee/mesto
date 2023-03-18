@@ -6,3 +6,9 @@
   align-items: center;
   gap: 51px;
 }
+
+@media screen and (max-width: 767px) {
+  .content {
+    gap: 36px;
+  }
+}

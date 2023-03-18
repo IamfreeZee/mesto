@@ -1,4 +1,5 @@
 .profile__user-caption {
+  max-width: 300px;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.22;
@@ -7,4 +8,12 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__user-caption {
+    max-width: 250px;
+    font-size: 14px;
+    text-align: center;
+  }
 }

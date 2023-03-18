@@ -3,12 +3,21 @@
   background-color: #000;
   width: 150px;
   height: 50px;
-  border: none;
+  border: 2px solid #fff;
+  border-radius: 2px;
   padding: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
 }
 
 .profile__button-add:hover {
-  cursor: pointer;
   opacity: 0.6;
   transition: 0.5s;
+}
+
+@media screen and (max-width: 767px) {
+  .profile__button-add {
+    width: 282px;
+  }
 }

@@ -1,0 +1,5 @@
+.profile__text-area {
+  margin-left: 30px;
+  display: flex;
+  align-items: baseline;
+}

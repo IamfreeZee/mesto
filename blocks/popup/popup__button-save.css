@@ -9,9 +9,16 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 1.22;
+  text-align: center;
 }
 
 .popup__button-save:hover {
   opacity: 0.8;
   transition: 0.5s;
+}
+
+@media screen and (max-width:767px) {
+  .popup__button-save {
+    font-size: 14px;
+  }
 }

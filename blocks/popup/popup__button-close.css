@@ -1,5 +1,5 @@
 .popup__button-close {
-  outline: 1px solid red;
+  /* outline: 1px solid red; */
   background-image: url(../../images/button-close.svg);
   width: 32px;
   height: 32px;

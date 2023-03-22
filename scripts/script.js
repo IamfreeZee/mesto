@@ -1,65 +1,47 @@
-// открытие/закрытие попапа
-
-// выбрать DOM элементы и сохранить их в переменные
-
+// логика попапа
+// список переменных/const
+// переменные кнопок
 const popupElement = document.querySelector ('.popup');
 const popupOpenButtonElement = document.querySelector ('.profile__button-edit');
 const popupCloseButtonElement = popupElement.querySelector ('.popup__button-close');
 const popupSaveButtonElement = popupElement.querySelector ('.popup__button-save');
 
-// функция переключения состояния попапа открыт/закрыт
+// переменные инпутов в профиле
+const profileNameElement = document.querySelector ('.profile__user-name');
+const profileCaptionElement = document.querySelector ('.profile__user-caption');
 
-function togglePopupVisibility () {
-  popupElement.classList.toggle('popup_opened');
+// переменные инпутов в форме попапа
+const formElement = popupElement.querySelector ('.popup__form');
+const nameInputElement = formElement.querySelector ('.popup__input_user_name');
+const captionInputElement = formElement.querySelector ('.popup__input_user_caption');
+
+// список функций/function
+// функция открытия попапа
+function openPopup () {
+  popupElement.classList.add('popup_opened');
+  nameInputElement.value = profileNameElement.textContent;
+  captionInputElement.value = profileCaptionElement.textContent;
 }
 
-// обработчик события - открытие попапа по кнопке ручки
+// функция закрытия попапа
+function closePopup () {
+  popupElement.classList.remove('popup_opened');
+}
 
-popupOpenButtonElement.addEventListener ('click', togglePopupVisibility);
-
-// обработчик события - закрытие попапа по кнопке крестика
-
-popupCloseButtonElement.addEventListener ('click', togglePopupVisibility);
-
-//обработчик события - закрытие попапа по кнопке сохранения
-
-popupSaveButtonElement.addEventListener ('click', togglePopupVisibility);
-
-//=====================================================================================
-
-//изменение текстовых полей в форме
-
-// Находим форму в DOM
-
-let formElement = popupElement.querySelector ('.popup__form');
-
-// Находим поля формы в DOM
-
-let nameInput = formElement.querySelector ('.popup__user-name');
-let captionInput = formElement.querySelector ('.popup__user-caption');
-
-// Обработчик «отправки» формы
-
+// функция отправки формы
 function handleFormSubmit (event) {
   event.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  // Получите значение полей jobInput и nameInput из свойства value
-  let name = nameInput.value;
-  let caption = captionInput.value;
-  // Выберите элементы, куда должны быть вставлены значения полей
-  let profileNameElement = document.querySelector ('.profile__user-name');
-  let profileCaptionElement = document.querySelector ('.profile__user-caption');
-  // Вставьте новые значения с помощью textContent
-  profileNameElement.textContent = name;
-  profileCaptionElement.textContent = caption;
+  profileNameElement.textContent = nameInputElement.value;
+  profileCaptionElement.textContent = captionInputElement.value;
+  closePopup ();
 }
-// Прикрепляем обработчик к форме: он будет следить за событием “submit” - «отправка»
+
+// обработчики/слушатели событий/eventListener
+// обработчик события - открытие попапа по кнопке ручки
+popupOpenButtonElement.addEventListener ('click', openPopup);
+
+// обработчик события - закрытие попапа по кнопке крестика
+popupCloseButtonElement.addEventListener ('click', closePopup);
+
+// обработчик события - отправка формы
 formElement.addEventListener ('submit', handleFormSubmit);
-
-// ====================================================================================
-
-
-
-
-
-
-

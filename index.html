@@ -77,11 +77,11 @@
   <div class="popup__container">
     <button class="popup__button-close" type="button"></button>
     <h3 class="popup__title">Редактировать профиль</h3>
-    <form class="popup__form" name="edit-profile">
+    <form class="popup__form" name="edit-profile" id="popup__form">
       <input class="popup__input popup__input_user_name" type="text" name="user-name">
       <input class="popup__input popup__input_user_caption" type="text" name="user-caption">
     </form>
-    <button class="popup__button-save" type="submit">Сохранить</button>
+    <button class="popup__button-save" type="submit" form="popup__form">Сохранить</button>
   </div>
 </div>
 <script src="./scripts/script.js"></script>

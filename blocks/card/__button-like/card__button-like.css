@@ -1,5 +1,5 @@
 .card__button-like {
-  background-image: url(../../images/button-like.svg);
+  background-image: url(../../../images/button-like.svg);
   background-color: #fff;
   width: 22px;
   height: 19px;
@@ -14,5 +14,5 @@
 }
 
 .card__button-like:active {
-  background-image: url(../../images/button-like-active.svg);
+  background-image: url(../../../images/button-like-active.svg);
 }

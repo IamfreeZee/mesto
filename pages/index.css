@@ -19,13 +19,14 @@
 @import url(../blocks/profile/profile__button-edit.css);
 @import url(../blocks/profile/profile__button-add.css);
 
-@import url(../blocks/elements/elements.css);
+@import url(../blocks/cards/cards.css);
+@import url(../blocks/cards/__list/cards__list.css);
 
-@import url(../blocks/element/element.css);
-@import url(../blocks/element/element__image.css);
-@import url(../blocks/element/element__text-area.css);
-@import url(../blocks/element/element__caption.css);
-@import url(../blocks/element/element__button-like.css);
+@import url(../blocks/card/card.css);
+@import url(../blocks/card/card__image.css);
+@import url(../blocks/card/card__text-area.css);
+@import url(../blocks/card/card__caption.css);
+@import url(../blocks/card/card__button-like.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/footer__text.css);

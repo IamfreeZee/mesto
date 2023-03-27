@@ -43,5 +43,12 @@ popupOpenButtonElement.addEventListener ('click', openPopup);
 // обработчик события - закрытие попапа по кнопке крестика
 popupCloseButtonElement.addEventListener ('click', closePopup);
 
+// обработчик события - закрытие попапа редактирования профиля по клику за областью попапа
+popupElement.addEventListener('click', function (event) {
+  if (event.target === event.currentTarget) {
+    closePopup ();
+  }
+});
+
 // обработчик события - отправка формы
 formElement.addEventListener ('submit', handleFormSubmit);

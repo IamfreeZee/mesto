@@ -83,3 +83,25 @@ const initialCards = [
   }
 ];
 
+//функция создания и вставки новой карточки на страницу
+function createNewCard (data) {
+  //ищем шаблон
+  const cardTemplate = document.getElementById('card-template').content;
+  //клонируем содержимое шаблона
+  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+  //наполняем пустого клона значениями
+  cardElement.querySelector('.card__image').alt = data.name;
+  cardElement.querySelector('.card__image').src = data.src;
+  cardElement.querySelector('.card__caption').textContent = data.name;
+  //вставляем наполненного клона в разметку
+  document.querySelector('.cards__list').append(cardElement);
+}
+
+//проходим по массиву функцией создания и добавления карточки
+initialCards.forEach (function (item) {
+  createNewCard(item);
+});
+
+
+
+

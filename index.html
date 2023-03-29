@@ -25,7 +25,7 @@
   </section>
   <section class="cards">
     <ul class="cards__list">
-      <li class="card">
+      <!-- <li class="card">
         <button class="card__button-delete" type="button"></button>
         <img src="./images/collection-altay.jpg" alt="Алтай" class="card__image">
         <div class="card__text-area">
@@ -67,7 +67,7 @@
           <h2 class="card__caption">Камчатка</h2>
           <button class="card__button-like"></button>
         </div>
-      </li>
+      </li> -->
     </ul>
   </section>
 </main>
@@ -85,6 +85,16 @@
     <button class="popup__button-save" type="submit" form="popup__form">Сохранить</button>
   </div>
 </div>
+<template id="card-template">
+  <li class="card">
+    <button class="card__button-delete" type="button"></button>
+    <img src="#" alt="#" class="card__image">
+    <div class="card__text-area">
+      <h2 class="card__caption"></h2>
+      <button class="card__button-like" type="button"></button>
+    </div>
+  </li>
+</template>
 <script src="./scripts/script.js"></script>
 </body>
 </html>

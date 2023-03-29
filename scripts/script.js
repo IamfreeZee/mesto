@@ -43,7 +43,7 @@ popupOpenButtonElement.addEventListener ('click', openPopup);
 // обработчик события - закрытие попапа по кнопке крестика
 popupCloseButtonElement.addEventListener ('click', closePopup);
 
-// обработчик события - закрытие попапа редактирования профиля по клику за областью попапа
+// обработчик события - закрытие попапа по клику за областью попапа
 popupElement.addEventListener('click', function (event) {
   if (event.target === event.currentTarget) {
     closePopup ();
@@ -52,3 +52,34 @@ popupElement.addEventListener('click', function (event) {
 
 // обработчик события - отправка формы
 formElement.addEventListener ('submit', handleFormSubmit);
+
+//////////////PR5///////////////
+const log = console.log;
+// массив из объектов-карточек с фото
+const initialCards = [
+  {
+    name: 'Алтай',
+    src: './images/collection-altay.jpg'
+  },
+  {
+    name: 'Байкал',
+    src: './images/collection-baykal.jpg'
+  },
+  {
+    name: 'Эльбрус',
+    src: './images/collection-elbrus.jpg'
+  },
+  {
+    name: 'Карелия',
+    src: './images/collection-kareliya.jpg'
+  },
+  {
+    name: 'Нижний Новгород',
+    src: './images/collection-nizhny-novgorod.jpg'
+  },
+  {
+    name: 'Камчатка',
+    src: './images/collection-kamchatka.jpg'
+  }
+];
+

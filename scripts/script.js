@@ -127,29 +127,29 @@ popupAddNewCardElement.addEventListener('click', function (event) {
 // отправка формы добавления новой карточки
 popupAddNewCardFormElement.addEventListener('submit', handleAddNewCardFormSubmit);
 
-//функция создания и добавления новой карточки на страницу
+// функция создания и добавления новой карточки на страницу
 function createNewCard (data) {
-  //ищем шаблон
+  // ищем шаблон
   const cardTemplate = document.querySelector('#card-template').content;
-  //клонируем содержимое шаблона
+  // клонируем содержимое шаблона
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
-  //заполняем клона значениями
+  // заполняем клона значениями
   cardElement.querySelector('.card__image').alt = data.name;
   cardElement.querySelector('.card__image').src = data.src;
   cardElement.querySelector('.card__caption').textContent = data.name;
-  //вешаем слушатель клика по кнопке лайка
+  // вешаем слушатель клика по кнопке лайка
   cardElement.querySelector('.card__button-like').addEventListener('click', function () {
     cardElement.querySelector('.card__button-like').classList.toggle('card__button-like_clicked');
   });
-  //вешаем слушатель клика по кнопке удаления карточки
+  // вешаем слушатель клика по кнопке удаления карточки
   cardElement.querySelector('.card__button-delete').addEventListener('click', function () {
     cardElement.querySelector('.card__button-delete').closest('.card').remove();
   });
-  // //вставляем наполненного клона в разметку
+  // вставляем наполненного клона в разметку
   document.querySelector('.cards__list').append(cardElement);
 }
 
-//проходим по массиву функцией создания и добавления карточки
+// проходим по массиву функцией создания и добавления карточки
 initialCards.forEach (function (item) {
   createNewCard(item);
 });

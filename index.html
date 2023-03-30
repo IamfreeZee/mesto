@@ -96,10 +96,19 @@
     <button class="popup__button-save" type="submit" form="add-new-card">Сохранить</button>
   </div>
 </div>
+<div class="popup popup-zoom-image">
+  <div class="popup__container popup__container_zoomed">
+    <button class="popup__button-close" type="button"></button>
+    <figure class="popup-zoom-image__image-container">
+      <img class="popup-zoom-image__image" src="" alt="">
+      <figcaption class="popup-zoom-image__image-caption"></figcaption>
+    </figure>
+  </div>
+</div>
 <template id="card-template">
   <li class="card">
     <button class="card__button-delete" type="button"></button>
-    <img src="#" alt="#" class="card__image">
+    <img src="" alt="" class="card__image">
     <div class="card__text-area">
       <h2 class="card__caption"></h2>
       <button class="card__button-like" type="button"></button>

@@ -79,10 +79,21 @@
     <button class="popup__button-close" type="button"></button>
     <h3 class="popup__title">Редактировать профиль</h3>
     <form class="popup__form" name="edit-profile" id="edit-profile">
-      <input class="popup__input popup__input_user_name" type="text" name="user-name">
-      <input class="popup__input popup__input_user_caption" type="text" name="user-caption">
+      <input class="popup__input popup__input_user_name" placeholder="Ваше имя" type="text" name="user-name">
+      <input class="popup__input popup__input_user_caption" placeholder="О себе" type="text" name="user-caption">
     </form>
     <button class="popup__button-save" type="submit" form="edit-profile">Сохранить</button>
+  </div>
+</div>
+<div class="popup popup-add-new-card">
+  <div class="popup__container">
+    <button class="popup__button-close" type="button"></button>
+    <h3 class="popup__title">Новое место</h3>
+    <form class="popup__form" name="add-new-card" id="add-new-card">
+      <input class="popup__input popup__input_card_name" placeholder="Название места" type="text" name="card-name">
+      <input class="popup__input popup__input_card_link" placeholder="Ссылка на фотографию" type="url" name="card-link">
+    </form>
+    <button class="popup__button-save" type="submit" form="add-new-card">Сохранить</button>
   </div>
 </div>
 <template id="card-template">

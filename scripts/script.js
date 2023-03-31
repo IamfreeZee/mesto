@@ -31,6 +31,9 @@ const cardLinkInputElement = popupAddNewCardFormElement.querySelector('.popup__i
 const zoomedImageElement = popupZoomImageElement.querySelector('.popup-zoom-image__image');
 const zoomedImageCaptionElement = popupZoomImageElement.querySelector('.popup-zoom-image__image-caption');
 
+// Переменная для вставки новой карточки
+const cardsListElement = document.querySelector('.cards__list');
+
 // массив объектов изначальных карточек
 const initialCards = [
   {
@@ -78,7 +81,7 @@ function handleProfileEditFormSubmit(event) {
   closePopup(popupProfileEditElement);
 }
 
-// функция создания и добавления новой карточки на страницу
+// функция создания новой карточки
 function createNewCard(data) {
   // ищем шаблон
   const cardTemplate = document.querySelector('#card-template').content;
@@ -103,9 +106,19 @@ function createNewCard(data) {
     zoomedImageCaptionElement.textContent = cardElement.querySelector('.card__image').alt;
     openPopup(popupZoomImageElement);
   });
-  // вставляем наполненного клона в разметку
-  document.querySelector('.cards__list').append(cardElement);
+  return cardElement;
 };
+
+// функция добавления новой карточки в разметку
+function addNewCard(data, element) {
+  const newCardElement = createNewCard(data);
+  element.prepend(newCardElement);
+};
+
+// проходим по массиву функцией добавления новой карточки в разметку
+initialCards.forEach(function (item) {
+  addNewCard(item, cardsListElement);
+});
 
 // функция отправки формы добавления новой карточки
 function handleAddNewCardFormSubmit(event) {
@@ -113,7 +126,7 @@ function handleAddNewCardFormSubmit(event) {
   const newCardObject = {};
   newCardObject.name = cardNameInputElement.value;
   newCardObject.src = cardLinkInputElement.value;
-  createNewCard(newCardObject);
+  addNewCard(newCardObject, cardsListElement);
   closePopup(popupAddNewCardElement);
   event.target.reset();
 };
@@ -173,8 +186,4 @@ popupZoomImageElement.addEventListener('click', function (event) {
   };
 });
 
-// проходим по массиву функцией создания и добавления карточки
-initialCards.forEach(function (item) {
-  createNewCard(item);
-});
 

@@ -1,4 +1,7 @@
 // список переменных
+// все попапы со всей страницы
+const popups = document.querySelectorAll('.popup');
+
 // переменные попапов
 const popupProfileEditElement = document.querySelector('.popup-profile-edit');
 const popupAddNewCardElement = document.querySelector('.popup-add-new-card');
@@ -7,9 +10,6 @@ const popupZoomImageElement = document.querySelector('.popup-zoom-image');
 // переменные кнопок
 const popupEditButtonElement = document.querySelector('.profile__button-edit');
 const popupAddButtonElement = document.querySelector('.profile__button-add');
-const popupProfileEditCloseButtonElement = popupProfileEditElement.querySelector('.popup__button-close');
-const popupAddNewCardCloseButtonElement = popupAddNewCardElement.querySelector('.popup__button-close');
-const popupZoomImageCloseButtonElement = popupZoomImageElement.querySelector('.popup__button-close');
 
 // переменные текстовых полей в профиле
 const profileNameElement = document.querySelector('.profile__user-name');
@@ -134,18 +134,6 @@ popupEditButtonElement.addEventListener('click', function () {
   openPopup(popupProfileEditElement);
 });
 
-// обработчик события - закрытие попапа редактирования профиля по кнопке крестика
-popupProfileEditCloseButtonElement.addEventListener('click', function () {
-  closePopup(popupProfileEditElement);
-});
-
-// обработчик события - закрытие попапа редактирования профиля по клику за областью попапа
-popupProfileEditElement.addEventListener('click', function (event) {
-  if (event.target === event.currentTarget) {
-    closePopup(popupProfileEditElement);
-  };
-});
-
 // обработчик события - отправка формы редактирования профиля
 popupProfileEditFormElement.addEventListener('submit', handleProfileEditFormSubmit);
 
@@ -154,35 +142,23 @@ popupAddButtonElement.addEventListener('click', function () {
   openPopup(popupAddNewCardElement);
 });
 
-// обработчик события - закрытие попапа добавления новой карточки по кнопке крестика
-popupAddNewCardCloseButtonElement.addEventListener('click', function () {
-  closePopup(popupAddNewCardElement);
-});
-
-// обработчик события - закрытие попапа добавления новой карточки по клику за областью попапа
-popupAddNewCardElement.addEventListener('click', function (event) {
-  if (event.target === event.currentTarget) {
-    closePopup(popupAddNewCardElement);
-  };
-});
-
 // обработчик события - отправка формы добавления новой карточки
 popupAddNewCardFormElement.addEventListener('submit', handleAddNewCardFormSubmit);
 
-// обработчик события - закрытие попапа с увеличенным изображением по кнопке крестика
-popupZoomImageCloseButtonElement.addEventListener('click', function () {
-  closePopup(popupZoomImageElement);
-});
-
-// обработчик события - закрытие попапа с увеличенным изображением по клику за областью попапа
-popupZoomImageElement.addEventListener('click', function (event) {
-  if (event.target === event.currentTarget) {
-    closePopup(popupZoomImageElement);
-  };
-});
-
+// проходы forEach
 // проходим по массиву функцией добавления новой карточки в разметку
-initialCards.forEach(function (item) {
-  addNewCard(item, cardsListElement);
+initialCards.forEach(function (object) {
+  addNewCard(object, cardsListElement);
 });
 
+// проходим по всем попапам forEach'ом и добавляем каждому слушатель события mousedown с event target с условием сравнения наличия класса у кликнутого элемента
+popups.forEach(function (popup) {
+  popup.addEventListener('mousedown', function (event) {
+    if (event.target.classList.contains('popup_opened')) {
+      closePopup(popup);
+    };
+    if (event.target.classList.contains('popup__button-close')) {
+      closePopup(popup);
+    };
+  });
+});

@@ -115,11 +115,6 @@ function addNewCard(data, element) {
   element.prepend(newCardElement);
 };
 
-// проходим по массиву функцией добавления новой карточки в разметку
-initialCards.forEach(function (item) {
-  addNewCard(item, cardsListElement);
-});
-
 // функция отправки формы добавления новой карточки
 function handleAddNewCardFormSubmit(event) {
   event.preventDefault();
@@ -186,4 +181,8 @@ popupZoomImageElement.addEventListener('click', function (event) {
   };
 });
 
+// проходим по массиву функцией добавления новой карточки в разметку
+initialCards.forEach(function (item) {
+  addNewCard(item, cardsListElement);
+});
 

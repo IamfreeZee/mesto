@@ -145,13 +145,13 @@ popupAddButtonElement.addEventListener('click', function () {
 // обработчик события - отправка формы добавления новой карточки
 popupAddNewCardFormElement.addEventListener('submit', handleAddNewCardFormSubmit);
 
-// проходы forEach
-// проходим по массиву функцией добавления новой карточки в разметку
+// обходы массивов
+// проходим по массиву с функцией добавления новой карточки в разметку
 initialCards.forEach(function (object) {
   addNewCard(object, cardsListElement);
 });
 
-// проходим по всем попапам forEach'ом и добавляем каждому слушатель события mousedown с event target с условием сравнения наличия класса у кликнутого элемента
+// добавляем каждому попапу слушатель события mousedown с условием сравнения наличия класса у кликнутого элемента
 popups.forEach(function (popup) {
   popup.addEventListener('mousedown', function (event) {
     if (event.target.classList.contains('popup_opened')) {
@@ -162,3 +162,15 @@ popups.forEach(function (popup) {
     };
   });
 });
+
+// закрытие попапа по нажатию Escape
+document.addEventListener('keydown', (evt) => {
+  if (evt.key === 'Escape') {
+    popups.forEach((popup) => {
+      if (popup.classList.contains('popup_opened')) {
+        closePopup(popup);
+      };
+    });
+  };
+});
+

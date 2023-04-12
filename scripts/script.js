@@ -66,12 +66,12 @@ const initialCards = [
 // функция открытия попапа
 function openPopup(element) {
   element.classList.add('popup_opened');
-}
+};
 
 // функция закрытия попапа
 function closePopup(element) {
   element.classList.remove('popup_opened');
-}
+};
 
 // функция отправки формы редактирования профиля
 function handleProfileEditFormSubmit(event) {
@@ -79,7 +79,7 @@ function handleProfileEditFormSubmit(event) {
   profileNameElement.textContent = nameInputElement.value;
   profileCaptionElement.textContent = captionInputElement.value;
   closePopup(popupProfileEditElement);
-}
+};
 
 // функция создания новой карточки
 function createNewCard(data) {
@@ -163,7 +163,7 @@ popups.forEach(function (popup) {
   });
 });
 
-// закрытие попапа по нажатию Escape
+// закрытие попапов по нажатию клавиши Escape
 document.addEventListener('keydown', (evt) => {
   if (evt.key === 'Escape') {
     popups.forEach((popup) => {
@@ -173,4 +173,3 @@ document.addEventListener('keydown', (evt) => {
     });
   };
 });
-

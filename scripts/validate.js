@@ -55,6 +55,9 @@ function setEventListener (form, { inputSelector, submitButtonSelector, ...rest 
   const formInputs = Array.from(form.querySelectorAll(inputSelector));
   const formButton = form.querySelector(submitButtonSelector);
   disableButton(formButton, rest);
+  form.addEventListener('reset', () => {
+    disableButton(formButton, rest);
+  });
   formInputs.forEach((input) => {
     input.addEventListener('input', () => {
       checkInputValidity(input, rest);

@@ -9,13 +9,13 @@ const validationConfigObject = {
   errorClass: 'popup__error'
 };
 
-// функция выделения невалидного инпута
-function showInvalidInput (input, { inputErrorClass }) {
+// функция добавляющая класс ошибки у инпута
+function addErrorClass (input, { inputErrorClass }) {
   input.classList.add(inputErrorClass);
 };
 
-// функция снятия выделения невалидного инпута
-function hideInvalidInput (input, { inputErrorClass }) {
+// функция убирающая класс ошибки у инпута
+function removeErrorClass (input, { inputErrorClass }) {
   input.classList.remove(inputErrorClass);
 };
 
@@ -24,10 +24,10 @@ function checkInputValidity (input, {...rest}) {
   const currentInputErrorContainer = document.querySelector(`#${input.id}-error`);
   if (input.checkValidity()) { // метод проверки валидности инпута отдает true или false, if срабатывает если true, else если false
     currentInputErrorContainer.textContent = '';
-    hideInvalidInput(input, rest);
+    removeErrorClass(input, rest);
   } else {
     currentInputErrorContainer.textContent = input.validationMessage;
-    showInvalidInput(input, rest);
+    addErrorClass(input, rest);
   };
 };
 
@@ -58,9 +58,9 @@ function setEventListener (form, { inputSelector, submitButtonSelector, ...rest 
   form.addEventListener('reset', () => {
     disableButton(formButton, rest);
   });
-  formInputs.forEach((input) => {
-    input.addEventListener('input', () => {
-      checkInputValidity(input, rest);
+  formInputs.forEach((inputElement) => {
+    inputElement.addEventListener('input', () => {
+      checkInputValidity(inputElement, rest);
       if (hasInvalidInput(formInputs)) {
         disableButton(formButton, rest);
       } else {

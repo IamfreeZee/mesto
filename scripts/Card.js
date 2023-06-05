@@ -1,0 +1,79 @@
+const popupZoomImageElement = document.querySelector('.popup-zoom-image');
+
+// функция открытия попапа
+function openPopup(element) {
+  element.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupIfPressEsc);
+};
+
+// функция закрытия попапа
+function closePopup(element) {
+  element.classList.remove('popup_opened');
+  document.removeEventListener('keydown', closePopupIfPressEsc);
+};
+
+// функция закрытия попапа при нажатии Escape
+function closePopupIfPressEsc (evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_opened')
+    closePopup(openedPopup);
+  };
+};
+
+export default class Card {
+  constructor (dataObject, templateSelector) {
+    this._cardDataObject = dataObject;
+    this._cardTemplateSelector = templateSelector;
+  };
+
+  _findCardTemplate () {
+    this._cardTemplate = document.querySelector(this._cardTemplateSelector).content;
+    return this._cardTemplate;
+  };
+
+  _cloneCardTemplate () {
+    this._findCardTemplate();
+    this._cardElementClone = this._cardTemplate.querySelector('.card').cloneNode(true);
+    return this._cardElementClone;
+  };
+
+  _toggleLikeButton = () => {
+    // console.log(this)
+    this._cardButtonLikeElement.classList.toggle('card__button-like_clicked');
+  };
+
+  _deleteCard = () => {
+    // console.log(this)
+    this._cardElement.remove();
+  };
+
+  _zoomPopup = () => {
+    // console.log(this)
+    this._zoomedImageElement = popupZoomImageElement.querySelector('.popup-zoom-image__image');
+    this._zoomedImageCaptionElement = popupZoomImageElement.querySelector('.popup-zoom-image__image-caption');
+    this._zoomedImageElement.src = this._cardDataObject.src;
+    this._zoomedImageElement.alt = this._cardDataObject.name;
+    this._zoomedImageCaptionElement.textContent = this._cardDataObject.name;
+    openPopup(popupZoomImageElement);
+  };
+
+  _setEventListeners () {
+    this._cardButtonLikeElement.addEventListener('click', this._toggleLikeButton);
+    this._cardButtonDeleteElement.addEventListener('click', this._deleteCard);
+    this._cardImageElement.addEventListener('click', this._zoomPopup);
+  };
+
+  createNewCard () {
+    this._cardElement = this._cloneCardTemplate();
+    this._cardImageElement = this._cardElement.querySelector('.card__image');
+    this._cardCaptionElement = this._cardElement.querySelector('.card__caption');
+    this._cardButtonLikeElement = this._cardElement.querySelector('.card__button-like');
+    this._cardButtonDeleteElement = this._cardElement.querySelector('.card__button-delete');
+
+    this._cardImageElement.alt = this._cardDataObject.name;
+    this._cardImageElement.src = this._cardDataObject.src;
+    this._cardCaptionElement.textContent = this._cardDataObject.name;
+    this._setEventListeners();
+    return this._cardElement;
+  };
+};

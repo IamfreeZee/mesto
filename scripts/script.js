@@ -1,11 +1,15 @@
+import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
 // список переменных
-// все попапы со всей страницы
-const popups = document.querySelectorAll('.popup');
+// Переменная селектора шаблона карточки используемая в конструкторе класса карточки
+const cardTemplateSelector = '#card-template';
 
-// переменные попапов
+// все попапы со всей страницы
+const popupsArray = Array.from(document.querySelectorAll('.popup'));
+
+// переменные попапов по отдельности
 const popupProfileEditElement = document.querySelector('.popup-profile-edit');
 const popupAddNewCardElement = document.querySelector('.popup-add-new-card');
-const popupZoomImageElement = document.querySelector('.popup-zoom-image');
 
 // переменные кнопок
 const popupEditButtonElement = document.querySelector('.profile__button-edit');
@@ -27,15 +31,11 @@ const captionInputElement = popupProfileEditFormElement.querySelector('.popup__i
 const cardNameInputElement = popupAddNewCardFormElement.querySelector('.popup__input_card_name');
 const cardLinkInputElement = popupAddNewCardFormElement.querySelector('.popup__input_card_link');
 
-// переменные внутри попапа с увеличенным изображением
-const zoomedImageElement = popupZoomImageElement.querySelector('.popup-zoom-image__image');
-const zoomedImageCaptionElement = popupZoomImageElement.querySelector('.popup-zoom-image__image-caption');
-
 // Переменная для вставки новой карточки
 const cardsListElement = document.querySelector('.cards__list');
 
 // массив объектов изначальных карточек
-const initialCards = [
+const initialCardsArray = [
   {
     name: 'Алтай',
     src: './images/collection-altay.jpg'
@@ -62,12 +62,43 @@ const initialCards = [
   }
 ];
 
+// объект для конструктора класса валидатора форм
+const validationConfigObject = {
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button-save',
+  activeButtonClass: 'popup__button-save_active',
+  inactiveButtonClass: 'popup__button-save_inactive',
+  inputErrorClass: 'popup__input_error',
+  errorClass: 'popup__error' //нигде не используется для валидации
+};
+
+// создание экземпляра класса для формы редактирования профиля
+const profileFormValidatorExampleObject = new FormValidator(validationConfigObject, popupProfileEditFormElement);
+// запускаем валидацию формы редактирования профиля
+profileFormValidatorExampleObject.enableValidation(popupProfileEditFormElement);
+
+// создание экземпляра класса для формы добавления новой карточки
+const cardFormValidatorExampleObject = new FormValidator(validationConfigObject, popupAddNewCardFormElement);
+// запускаем валидацию формы добавления новой карточки
+cardFormValidatorExampleObject.enableValidation(popupAddNewCardFormElement);
+
 // список функций
 // функция открытия попапа
 function openPopup(element) {
   element.classList.add('popup_opened');
   document.addEventListener('keydown', closePopupIfPressEsc);
 };
+
+// // переменные внутри попапа с увеличенным изображением
+// const zoomedImageElement = popupZoomImageElement.querySelector('.popup-zoom-image__image');
+// const zoomedImageCaptionElement = popupZoomImageElement.querySelector('.popup-zoom-image__image-caption');
+// // функция открытия попапа с увеличенным изображением
+// function zoomPopup (cardDataObject) {
+//   zoomedImageElement.src = cardDataObject.src;
+//   zoomedImageElement.alt = cardDataObject.name;
+//   zoomedImageCaptionElement.textContent = cardDataObject.name;
+//   openPopup(popupZoomImageElement);
+// };
 
 // функция закрытия попапа
 function closePopup(element) {
@@ -92,51 +123,51 @@ function handleProfileEditFormSubmit(event) {
 };
 
 // функция создания новой карточки
-function createNewCard(object) {
+// function createNewCard(cardDataObject) { // cardDataObject - это объект с данными для создания новой карточки, в объекте должны быть два свойства name и src
   // ищем шаблон
-  const cardTemplate = document.querySelector('#card-template').content;
+  // const cardTemplate = document.querySelector('#card-template').content;
   // клонируем содержимое шаблона
-  const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
+  // const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   // заполняем клона значениями
-  const cardImageElement = cardElement.querySelector('.card__image');
-  const cardCaptionElement = cardElement.querySelector('.card__caption');
-  const cardButtonLikeElement = cardElement.querySelector('.card__button-like');
-  const cardButtonDeleteElement = cardElement.querySelector('.card__button-delete');
+  // const cardImageElement = cardElement.querySelector('.card__image');
+  // const cardCaptionElement = cardElement.querySelector('.card__caption');
+  // const cardButtonLikeElement = cardElement.querySelector('.card__button-like');
+  // const cardButtonDeleteElement = cardElement.querySelector('.card__button-delete');
 
-  cardImageElement.alt = object.name;
-  cardImageElement.src = object.src;
-  cardCaptionElement.textContent = object.name;
+  // cardImageElement.alt = cardDataObject.name;
+  // cardImageElement.src = cardDataObject.src;
+  // cardCaptionElement.textContent = cardDataObject.name;
   // вешаем слушатель клика по кнопке лайка
-  cardButtonLikeElement.addEventListener('click', function () {
-    cardButtonLikeElement.classList.toggle('card__button-like_clicked');
-  });
+  // cardButtonLikeElement.addEventListener('click', function () {
+    // cardButtonLikeElement.classList.toggle('card__button-like_clicked');
+  // });
   // вешаем слушатель клика по кнопке удаления карточки
-  cardButtonDeleteElement.addEventListener('click', function () {
-    cardElement.remove();
-  });
-  // вешаем слушатель клика по фотографии
-  cardImageElement.addEventListener('click', function () {
-    zoomedImageElement.src = object.src;
-    zoomedImageElement.alt = object.name;
-    zoomedImageCaptionElement.textContent = object.name;
-    openPopup(popupZoomImageElement);
-  });
-  return cardElement;
-};
+  // cardButtonDeleteElement.addEventListener('click', function () {
+    // cardElement.remove();
+  // });
+  // вешаем слушатель клика по фотографии для увеличения
+  // cardImageElement.addEventListener('click', function () {
+    // zoomPopup(cardDataObject);
+  // });
+  // return cardElement;
+// };
 
 // функция добавления новой карточки в разметку
-function addNewCard(object, element) {
-  const newCardElement = createNewCard(object);
-  element.prepend(newCardElement);
+function addNewCard(cardDataObject, listElement, cardTemplateSelector) {
+  const newCardExampleObject = new Card(cardDataObject, cardTemplateSelector);
+  // console.log(newCardExampleObject)
+  listElement.prepend(newCardExampleObject.createNewCard());
+  // const newCardElement = createNewCard(cardDataObject);
+  // listElement.prepend(newCardElement);
 };
 
 // функция отправки формы добавления новой карточки
 function handleAddNewCardFormSubmit(event) {
   event.preventDefault();
-  const newCardObject = {};
-  newCardObject.name = cardNameInputElement.value;
-  newCardObject.src = cardLinkInputElement.value;
-  addNewCard(newCardObject, cardsListElement);
+  const newCardDataObject = {};
+  newCardDataObject.name = cardNameInputElement.value;
+  newCardDataObject.src = cardLinkInputElement.value;
+  addNewCard(newCardDataObject, cardsListElement, cardTemplateSelector);
   closePopup(popupAddNewCardElement);
   event.target.reset();
 };
@@ -160,14 +191,13 @@ popupAddButtonElement.addEventListener('click', function () {
 // обработчик события - отправка формы добавления новой карточки
 popupAddNewCardFormElement.addEventListener('submit', handleAddNewCardFormSubmit);
 
-// обходы массивов
-// проходим по массиву с функцией добавления новой карточки в разметку
-initialCards.forEach(function (object) {
-  addNewCard(object, cardsListElement);
+// проходим по массиву изначальных карточек функцией добавления новой карточки в разметку
+initialCardsArray.forEach(function (cardObject) {
+  addNewCard(cardObject, cardsListElement, cardTemplateSelector);
 });
 
 // добавляем каждому попапу слушатель события mousedown с условием сравнения наличия класса у кликнутого элемента
-popups.forEach(function (popup) {
+popupsArray.forEach(function (popup) {
   popup.addEventListener('mousedown', function (event) {
     if (event.target.classList.contains('popup_opened')) {
       closePopup(popup);

@@ -8,8 +8,8 @@ export default class FormValidator {
     this._inputErrorClass = configObject.inputErrorClass; // значением будет строка 'popup__input_error'
     this._errorClass = configObject.errorClass; // значением будет строка 'popup__error' //нигде не используется
     // this._inputElement = form.querySelector(this._inputSelector); // значением будет строка 'popup__input'
-    this._submitButtonElement = form.querySelector(this._submitButtonSelector); // значением будет строка 'popup__button-save'
-    this._formInputsArray = Array.from(form.querySelectorAll(this._inputSelector)); // массив из всех инпутов формы
+    this._submitButtonElement = this._form.querySelector(this._submitButtonSelector); // значением будет строка 'popup__button-save'
+    this._formInputsArray = Array.from(this._form.querySelectorAll(this._inputSelector)); // массив из всех инпутов формы
   };
 
   // функция показывающая ошибку инпута

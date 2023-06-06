@@ -1,29 +1,8 @@
-const popupZoomImageElement = document.querySelector('.popup-zoom-image');
-
-// функция открытия попапа
-function openPopup(element) {
-  element.classList.add('popup_opened');
-  document.addEventListener('keydown', closePopupIfPressEsc);
-};
-
-// функция закрытия попапа
-function closePopup(element) {
-  element.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupIfPressEsc);
-};
-
-// функция закрытия попапа при нажатии Escape
-function closePopupIfPressEsc (evt) {
-  if (evt.key === 'Escape') {
-    const openedPopup = document.querySelector('.popup_opened')
-    closePopup(openedPopup);
-  };
-};
-
 export default class Card {
-  constructor (dataObject, templateSelector) {
+  constructor (dataObject, templateSelector, zoomPopup) {
     this._cardDataObject = dataObject;
     this._cardTemplateSelector = templateSelector;
+    this._zoomPopup = zoomPopup;
   };
 
   _findCardTemplate () {
@@ -37,30 +16,18 @@ export default class Card {
     return this._cardElementClone;
   };
 
-  _toggleLikeButton = () => {
-    // console.log(this)
+  _toggleLikeButton () {
     this._cardButtonLikeElement.classList.toggle('card__button-like_clicked');
   };
 
-  _deleteCard = () => {
-    // console.log(this)
+  _deleteCard () {
     this._cardElement.remove();
   };
 
-  _zoomPopup = () => {
-    // console.log(this)
-    this._zoomedImageElement = popupZoomImageElement.querySelector('.popup-zoom-image__image');
-    this._zoomedImageCaptionElement = popupZoomImageElement.querySelector('.popup-zoom-image__image-caption');
-    this._zoomedImageElement.src = this._cardDataObject.src;
-    this._zoomedImageElement.alt = this._cardDataObject.name;
-    this._zoomedImageCaptionElement.textContent = this._cardDataObject.name;
-    openPopup(popupZoomImageElement);
-  };
-
   _setEventListeners () {
-    this._cardButtonLikeElement.addEventListener('click', this._toggleLikeButton);
-    this._cardButtonDeleteElement.addEventListener('click', this._deleteCard);
-    this._cardImageElement.addEventListener('click', this._zoomPopup);
+    this._cardButtonLikeElement.addEventListener('click', () => this._toggleLikeButton());
+    this._cardButtonDeleteElement.addEventListener('click', () => this._deleteCard());
+    this._cardImageElement.addEventListener('click', () => this._zoomPopup(this._cardDataObject));
   };
 
   createNewCard () {

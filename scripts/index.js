@@ -82,12 +82,12 @@ const validationConfigObject = {
 // создание экземпляра класса для формы редактирования профиля
 const profileFormValidatorExampleObject = new FormValidator(validationConfigObject, popupProfileEditFormElement);
 // запускаем валидацию формы редактирования профиля
-profileFormValidatorExampleObject.enableValidation(popupProfileEditFormElement);
+profileFormValidatorExampleObject.enableValidation();
 
 // создание экземпляра класса для формы добавления новой карточки
 const cardFormValidatorExampleObject = new FormValidator(validationConfigObject, popupAddNewCardFormElement);
 // запускаем валидацию формы добавления новой карточки
-cardFormValidatorExampleObject.enableValidation(popupAddNewCardFormElement);
+cardFormValidatorExampleObject.enableValidation();
 
 // список функций
 // функция открытия попапа
@@ -124,6 +124,18 @@ function handleProfileEditFormSubmit (event) {
   profileNameElement.textContent = nameInputElement.value;
   profileCaptionElement.textContent = captionInputElement.value;
   closePopup(popupProfileEditElement);
+  event.target.reset();
+};
+
+// функция отправки формы добавления новой карточки
+function handleAddNewCardFormSubmit (event) {
+  event.preventDefault();
+  const newCardDataObject = {};
+  newCardDataObject.name = cardNameInputElement.value;
+  newCardDataObject.src = cardLinkInputElement.value;
+  addNewCard(cardsListElement, newCardDataObject, cardTemplateSelector, zoomPopup);
+  closePopup(popupAddNewCardElement);
+  event.target.reset();
 };
 
 // функция создания карточки
@@ -140,32 +152,25 @@ function addNewCard (listElement, dataObject, templateSelector, zoomFunction) {
   listElement.prepend(createCard(dataObject, templateSelector, zoomFunction));
 };
 
-// функция отправки формы добавления новой карточки
-function handleAddNewCardFormSubmit (event) {
-  event.preventDefault();
-  const newCardDataObject = {};
-  newCardDataObject.name = cardNameInputElement.value;
-  newCardDataObject.src = cardLinkInputElement.value;
-  addNewCard(cardsListElement, newCardDataObject, cardTemplateSelector, zoomPopup);
-  closePopup(popupAddNewCardElement);
-  event.target.reset();
-};
-
 // обработчики событий
 // обработчик события - открытие попапа редактирования профиля по кнопке ручки
 popupEditButtonElement.addEventListener ('click', function () {
+  popupProfileEditFormElement.reset();
+  profileFormValidatorExampleObject.resetErrorWhenOpenForm();
   nameInputElement.value = profileNameElement.textContent;
   captionInputElement.value = profileCaptionElement.textContent;
   openPopup(popupProfileEditElement);
 });
 
-// обработчик события - отправка формы редактирования профиля
-popupProfileEditFormElement.addEventListener('submit', handleProfileEditFormSubmit);
-
 // обработчик события - открытие попапа добавления новой карточки по кнопке плюса
 popupAddButtonElement.addEventListener('click', function () {
+  popupAddNewCardFormElement.reset();
+  cardFormValidatorExampleObject.resetErrorWhenOpenForm();
   openPopup(popupAddNewCardElement);
 });
+
+// обработчик события - отправка формы редактирования профиля
+popupProfileEditFormElement.addEventListener('submit', handleProfileEditFormSubmit);
 
 // обработчик события - отправка формы добавления новой карточки
 popupAddNewCardFormElement.addEventListener('submit', handleAddNewCardFormSubmit);

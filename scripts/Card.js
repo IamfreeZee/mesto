@@ -30,7 +30,7 @@ export default class Card {
     this._cardImageElement.addEventListener('click', () => this._zoomPopup(this._cardDataObject));
   };
 
-  createNewCard () {
+  generateCard () {
     this._cardElement = this._cloneCardTemplate();
     this._cardImageElement = this._cardElement.querySelector('.card__image');
     this._cardCaptionElement = this._cardElement.querySelector('.card__caption');

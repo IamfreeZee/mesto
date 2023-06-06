@@ -75,7 +75,7 @@ const validationConfigObject = {
   activeButtonClass: 'popup__button-save_active',
   inactiveButtonClass: 'popup__button-save_inactive',
   inputErrorClass: 'popup__input_error',
-  errorClass: 'popup__error' //нигде не используется для валидации
+  errorClass: 'popup__error'
 };
 
 // валидация форм
@@ -126,11 +126,18 @@ function handleProfileEditFormSubmit (event) {
   closePopup(popupProfileEditElement);
 };
 
-// функция добавления карточки в разметку
-function addNewCard (dataObject, listElement, templateSelector, zoomFunction) {
+// функция создания карточки
+function createCard (dataObject, templateSelector, zoomFunction) {
   // создание экземпляра класса карточки
-  const newCardExampleObject = new Card(dataObject, templateSelector, zoomFunction);
-  listElement.prepend(newCardExampleObject.createNewCard());
+  const cardExample = new Card(dataObject, templateSelector, zoomFunction);
+  // вызов метода генерации карточки
+  const cardElement = cardExample.generateCard();
+  return cardElement;
+};
+
+// функция вставки карточки в разметку
+function addNewCard (listElement, dataObject, templateSelector, zoomFunction) {
+  listElement.prepend(createCard(dataObject, templateSelector, zoomFunction));
 };
 
 // функция отправки формы добавления новой карточки
@@ -139,7 +146,7 @@ function handleAddNewCardFormSubmit (event) {
   const newCardDataObject = {};
   newCardDataObject.name = cardNameInputElement.value;
   newCardDataObject.src = cardLinkInputElement.value;
-  addNewCard(newCardDataObject, cardsListElement, cardTemplateSelector, zoomPopup);
+  addNewCard(cardsListElement, newCardDataObject, cardTemplateSelector, zoomPopup);
   closePopup(popupAddNewCardElement);
   event.target.reset();
 };
@@ -164,8 +171,8 @@ popupAddButtonElement.addEventListener('click', function () {
 popupAddNewCardFormElement.addEventListener('submit', handleAddNewCardFormSubmit);
 
 // проходим по массиву изначальных карточек функцией добавления новой карточки в разметку
-initialCardsArray.forEach((cardObject) => {
-  addNewCard(cardObject, cardsListElement, cardTemplateSelector, zoomPopup);
+initialCardsArray.forEach((arrayItem) => {
+  addNewCard(cardsListElement, arrayItem, cardTemplateSelector, zoomPopup);
 });
 
 // добавляем каждому попапу слушатель события mousedown с условием сравнения наличия класса у кликнутого элемента

@@ -7,7 +7,6 @@ export default class FormValidator {
     this._inactiveButtonClass = configObject.inactiveButtonClass; // значением переменной будет строка 'popup__button-save_inactive'
     this._inputErrorClass = configObject.inputErrorClass; // значением будет строка 'popup__input_error'
     this._errorClass = configObject.errorClass; // значением будет строка 'popup__error' //нигде не используется
-    // this._inputElement = form.querySelector(this._inputSelector); // значением будет строка 'popup__input'
     this._submitButtonElement = this._form.querySelector(this._submitButtonSelector); // значением будет строка 'popup__button-save'
     this._formInputsArray = Array.from(this._form.querySelectorAll(this._inputSelector)); // массив из всех инпутов формы
   };
@@ -58,7 +57,7 @@ export default class FormValidator {
   // функция проверки есть ли в форме хотя бы один не валидный инпут
   // метод массива some возвращает true если хотя бы для одного элемента проверка вернет true
   //                               false если для всех элементов проверка возвращает false
-  // ????? или реализовать через метод массива every ?????
+  // надо попробовать сделать через every
   _hasInvalidInput () {
     const hasInvalidInputResult = this._formInputsArray.some((input) => !input.checkValidity());
     return hasInvalidInputResult;
@@ -99,6 +98,7 @@ export default class FormValidator {
     this._formInputsArray.forEach((input) => {
       this._hideErrorClass(input);
     });
+    this._disableButton();
   };
 
 };

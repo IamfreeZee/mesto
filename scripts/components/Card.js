@@ -37,9 +37,12 @@ export default class Card {
     this._cardButtonLikeElement = this._cardElement.querySelector('.card__button-like');
     this._cardButtonDeleteElement = this._cardElement.querySelector('.card__button-delete');
 
-    this._cardImageElement.alt = this._cardDataObject.name;
-    this._cardImageElement.src = this._cardDataObject.src;
-    this._cardCaptionElement.textContent = this._cardDataObject.name;
+    // this._cardImageElement.alt = this._cardDataObject.name;
+    // this._cardImageElement.src = this._cardDataObject.src;
+    // this._cardCaptionElement.textContent = this._cardDataObject.name;
+    this._cardImageElement.alt = this._cardDataObject[0];
+    this._cardImageElement.src = this._cardDataObject[1];
+    this._cardCaptionElement.textContent = this._cardDataObject[0];
     this._setEventListeners();
     return this._cardElement;
   };

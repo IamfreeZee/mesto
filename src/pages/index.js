@@ -7,8 +7,6 @@ import {
   profileInfoSelectors,
   popupProfileEditFormElement,
   popupAddNewCardFormElement,
-  popupEditButtonElement,
-  popupAddButtonElement,
   popupProfileEditSelector,
   popupAddNewCardSelector,
   popupWithImageSelector,
@@ -37,8 +35,8 @@ const popupWithImage = new PopupWithImage(popupWithImageSelector)
 popupWithImage.setEventListeners()
 
 // создание экземпляра класса Section
-const section = new Section({ itemsArray: initialCardsArray, rendererFunction: renderCard }, cardContainerSelector)
-section.renderItems();
+const section = new Section(renderCard, cardContainerSelector)
+section.renderItems(initialCardsArray);
 
 // создание экземпляра класса профиля пользователя
 const userInfo = new UserInfo(profileInfoSelectors)
@@ -60,22 +58,20 @@ function renderCard (dataObject) {
 };
 
 // функция отправки формы редактирования профиля
-function handleProfileEditFormSubmit (event) {
-  event.preventDefault();
-  userInfo.setUserInfo(popupProfileEdit.getInputValues());
+function handleProfileEditFormSubmit (dataObject) {
+  userInfo.setUserInfo(dataObject);
   popupProfileEdit.closePopup();
-  event.target.reset();
 };
 
 // функция отправки формы добавления новой карточки
-function handleAddNewCardFormSubmit (event) {
-  event.preventDefault();
-  renderCard(popupAddNewCard.getInputValues());
+function handleAddNewCardFormSubmit (dataObject) {
+  renderCard(dataObject);
   popupAddNewCard.closePopup();
-  event.target.reset();
 };
 
 // обработчик события - открытие попапа редактирования профиля по кнопке ручки
+const popupEditButtonElement = document.querySelector('.profile__button-edit');
+
 popupEditButtonElement.addEventListener ('click', () => {
   profileFormValidatorExampleObject.resetErrorWhenOpenForm();
   popupProfileEdit.setInputValues(userInfo.getUserInfo());
@@ -83,6 +79,8 @@ popupEditButtonElement.addEventListener ('click', () => {
 });
 
 // обработчик события - открытие попапа добавления новой карточки по кнопке плюса
+const popupAddButtonElement = document.querySelector('.profile__button-add');
+
 popupAddButtonElement.addEventListener('click', () => {
   cardFormValidatorExampleObject.resetErrorWhenOpenForm();
   popupAddNewCard.openPopup();

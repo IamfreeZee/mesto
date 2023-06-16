@@ -6,16 +6,16 @@ export default class UserInfo {
 
   getUserInfo () {
     this._userInfoObj = {};
-    this._userInfoObj[0] = this._userName.textContent;
-    this._userInfoObj[1] = this._userCaption.textContent;
+    this._userInfoObj.userName = this._userName.textContent;
+    this._userInfoObj.userCaption = this._userCaption.textContent;
     // console.log(this._userInfoObj)
     return this._userInfoObj;
   };
 
   setUserInfo (inputValuesObj) {
     // console.log(inputValuesObj)
-    this._userName.textContent = inputValuesObj[0];
-    this._userCaption.textContent = inputValuesObj[1];
+    this._userName.textContent = inputValuesObj.userName;
+    this._userCaption.textContent = inputValuesObj.userCaption;
   };
 
 };

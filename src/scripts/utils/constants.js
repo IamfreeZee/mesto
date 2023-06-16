@@ -9,28 +9,28 @@ import kamchatkaImage from '../../images/collection-kamchatka.jpg';
 // массив объектов изначальных карточек
 const initialCardsArray = [
   {
-    0: 'Алтай',
-    1: altayImage
+    cardName: 'Алтай',
+    cardLink: altayImage
   },
   {
-    0: 'Байкал',
-    1: baykalImage
+    cardName: 'Байкал',
+    cardLink: baykalImage
   },
   {
-    0: 'Эльбрус',
-    1: elbrusImage
+    cardName: 'Эльбрус',
+    cardLink: elbrusImage
   },
   {
-    0: 'Карелия',
-    1: kareliyaImage
+    cardName: 'Карелия',
+    cardLink: kareliyaImage
   },
   {
-    0: 'Нижний Новгород',
-    1: nizhnyNovgorodImage
+    cardName: 'Нижний Новгород',
+    cardLink: nizhnyNovgorodImage
   },
   {
-    0: 'Камчатка',
-    1: kamchatkaImage
+    cardName: 'Камчатка',
+    cardLink: kamchatkaImage
   }
 ];
 
@@ -54,10 +54,6 @@ const profileInfoSelectors = {
 const popupProfileEditFormElement = document.forms['edit-profile'];
 const popupAddNewCardFormElement = document.forms['add-new-card'];
 
-// переменные кнопок открытия попапов
-const popupEditButtonElement = document.querySelector('.profile__button-edit');
-const popupAddButtonElement = document.querySelector('.profile__button-add');
-
 // селекторы попапов
 const popupProfileEditSelector = '.popup-profile-edit';
 const popupAddNewCardSelector = '.popup-add-new-card';
@@ -75,8 +71,6 @@ export {
   profileInfoSelectors,
   popupProfileEditFormElement,
   popupAddNewCardFormElement,
-  popupEditButtonElement,
-  popupAddButtonElement,
   popupProfileEditSelector,
   popupAddNewCardSelector,
   popupWithImageSelector,

@@ -1,3 +1,5 @@
+import './index.css'
+
 // импорты констант
 import {
   initialCardsArray,
@@ -12,15 +14,15 @@ import {
   popupWithImageSelector,
   cardTemplateSelector,
   cardContainerSelector
-} from './scripts/utils/constants.js';
+} from '../scripts/utils/constants.js';
 
 // импорты классов
-import Card from './scripts/components/Card.js';
-import FormValidator from './scripts/components/FormValidator.js';
-import PopupWithImage from './scripts/components/PopupWithImage.js';
-import Section from './scripts/components/Section.js';
-import UserInfo from './scripts/components/UserInfo.js';
-import PopupWithForm from './scripts/components/PopupWithForm.js';
+import Card from '../scripts/components/Card.js';
+import FormValidator from '../scripts/components/FormValidator.js';
+import PopupWithImage from '../scripts/components/PopupWithImage.js';
+import Section from '../scripts/components/Section.js';
+import UserInfo from '../scripts/components/UserInfo.js';
+import PopupWithForm from '../scripts/components/PopupWithForm.js';
 
 // создание экземпляра класса для формы редактирования профиля
 const profileFormValidatorExampleObject = new FormValidator(validationConfigObject, popupProfileEditFormElement);

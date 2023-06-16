@@ -1,28 +1,36 @@
+import altayImage from '../../images/collection-altay.jpg';
+import baykalImage from '../../images/collection-baykal.jpg';
+import elbrusImage from '../../images/collection-elbrus.jpg';
+import kareliyaImage from '../../images/collection-kareliya.jpg';
+import nizhnyNovgorodImage from '../../images/collection-nizhny-novgorod.jpg';
+import kamchatkaImage from '../../images/collection-kamchatka.jpg';
+
+
 // массив объектов изначальных карточек
 const initialCardsArray = [
   {
     0: 'Алтай',
-    1: './images/collection-altay.jpg'
+    1: altayImage
   },
   {
     0: 'Байкал',
-    1: './images/collection-baykal.jpg'
+    1: baykalImage
   },
   {
     0: 'Эльбрус',
-    1: './images/collection-elbrus.jpg'
+    1: elbrusImage
   },
   {
     0: 'Карелия',
-    1: './images/collection-kareliya.jpg'
+    1: kareliyaImage
   },
   {
     0: 'Нижний Новгород',
-    1: './images/collection-nizhny-novgorod.jpg'
+    1: nizhnyNovgorodImage
   },
   {
     0: 'Камчатка',
-    1: './images/collection-kamchatka.jpg'
+    1: kamchatkaImage
   }
 ];
 

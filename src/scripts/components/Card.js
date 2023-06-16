@@ -1,8 +1,8 @@
 export default class Card {
-  constructor (dataObject, templateSelector, zoomPopup) {
+  constructor (dataObject, templateSelector, openPopupFunction) {
     this._cardDataObject = dataObject;
     this._cardTemplateSelector = templateSelector;
-    this._zoomPopup = zoomPopup;
+    this._zoomCard = openPopupFunction;
   };
 
   _findCardTemplate () {
@@ -27,7 +27,7 @@ export default class Card {
   _setEventListeners () {
     this._cardButtonLikeElement.addEventListener('click', () => this._toggleLikeButton());
     this._cardButtonDeleteElement.addEventListener('click', () => this._deleteCard());
-    this._cardImageElement.addEventListener('click', () => this._zoomPopup(this._cardDataObject));
+    this._cardImageElement.addEventListener('click', () => this._zoomCard(this._cardDataObject));
   };
 
   generateCard () {

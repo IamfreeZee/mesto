@@ -35,7 +35,6 @@ function renderCard (dataObject) {
     if (btnLikeElem.classList.contains('card__button-like_clicked')) {
       api.deleteLike(cardId)
         .then((res) => {
-          // console.log(res)
           card.toggleLikeButton(res.likes)
         })
         .catch((err) => {
@@ -44,7 +43,6 @@ function renderCard (dataObject) {
     } else {
       api.putLike(cardId)
         .then((res) => {
-          // console.log(res)
           card.toggleLikeButton(res.likes)
         })
         .catch((err) => {
@@ -86,7 +84,6 @@ popupWithImage.setEventListeners();
 
 // создание экземпляра класса попапа удаления карточки
 const popupCardDelete = new PopupCardDelete(popupCardDeleteSelector, (cardObj) => {
-  console.log(cardObj)
   api.deleteCard(cardObj._cardId)
     .then((res) => {
       cardObj.deleteCard()
@@ -124,10 +121,11 @@ popupProfileEdit.setEventListeners();
 
 // создание экземпляра класса попапа добавления новой карточки
 const popupAddNewCard = new PopupWithForm(popupAddNewCardSelector, (dataObject) => {
-  api.addNewCard(dataObject)
-    .then((resObj) => {
-      section.addItemPrepend(renderCard(resObj))
-      popupAddNewCard.closePopup();
+  Promise.all([api.getUserInfo(), api.addNewCard(dataObject)])
+    .then(([userDataObj, cardDataObj]) => {
+      cardDataObj.userId = userDataObj._id
+      section.addItemPrepend(renderCard(cardDataObj))
+      popupAddNewCard.closePopup()
     })
     .catch((err) => {
       console.error(`Что-то пошло не так: ${err}`)

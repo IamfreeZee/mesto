@@ -15,17 +15,17 @@ import {
   popupCardDeleteSelector,
   cardTemplateSelector,
   cardContainerSelector,
-} from '../scripts/utils/constants.js';
+} from '../utils/constants.js';
 
 // импорты классов
-import Card from '../scripts/components/Card.js';
-import FormValidator from '../scripts/components/FormValidator.js';
-import PopupWithImage from '../scripts/components/PopupWithImage.js';
-import Section from '../scripts/components/Section.js';
-import UserInfo from '../scripts/components/UserInfo.js';
-import PopupWithForm from '../scripts/components/PopupWithForm';
-import PopupCardDelete from '../scripts/components/PopupCardDelete.js';
-import Api from '../scripts/components/Api.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import Section from '../components/Section.js';
+import UserInfo from '../components/UserInfo.js';
+import PopupWithForm from '../components/PopupWithForm';
+import PopupCardDelete from '../components/PopupCardDelete.js';
+import Api from '../components/Api.js';
 
 const defaultButtonText = 'Сохранить'
 

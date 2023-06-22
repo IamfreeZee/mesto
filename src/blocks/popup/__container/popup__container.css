@@ -2,7 +2,7 @@
   /* outline: 1px solid red; */
   width: 100%;
   max-width: 430px;
-  min-height: 330px;
+  /* min-height: 330px; */
   background-color: #fff;
   box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
   border-radius: 10px;
@@ -15,7 +15,7 @@
   .popup__container {
     width: 100%;
     max-width: 282px;
-    min-height: 322px;
+    /* min-height: 322px; */
     padding: 25px 22px;
   }
 }

@@ -1,7 +1,8 @@
 export default class Popup {
   constructor (popupSelector) {
     this._popupElement = document.querySelector(popupSelector);
-    this._closePopupByPressEsc = this._closePopupByPressEsc.bind(this)
+    this.openPopup = this.openPopup.bind(this);
+    this._closePopupByPressEsc = this._closePopupByPressEsc.bind(this);
   };
 
   // функция открытия попапа

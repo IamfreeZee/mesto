@@ -1,39 +1,3 @@
-import altayImage from '../../images/collection-altay.jpg';
-import baykalImage from '../../images/collection-baykal.jpg';
-import elbrusImage from '../../images/collection-elbrus.jpg';
-import kareliyaImage from '../../images/collection-kareliya.jpg';
-import nizhnyNovgorodImage from '../../images/collection-nizhny-novgorod.jpg';
-import kamchatkaImage from '../../images/collection-kamchatka.jpg';
-
-
-// массив объектов изначальных карточек
-const initialCardsArray = [
-  {
-    cardName: 'Алтай',
-    cardLink: altayImage
-  },
-  {
-    cardName: 'Байкал',
-    cardLink: baykalImage
-  },
-  {
-    cardName: 'Эльбрус',
-    cardLink: elbrusImage
-  },
-  {
-    cardName: 'Карелия',
-    cardLink: kareliyaImage
-  },
-  {
-    cardName: 'Нижний Новгород',
-    cardLink: nizhnyNovgorodImage
-  },
-  {
-    cardName: 'Камчатка',
-    cardLink: kamchatkaImage
-  }
-];
-
 // объект для конструктора класса валидатора форм
 const validationConfigObject = {
   inputSelector: '.popup__input',
@@ -47,33 +11,39 @@ const validationConfigObject = {
 // Объект с селекторами для класса UserInfo
 const profileInfoSelectors = {
   userNameSelector: '.profile__user-name',
-  userCaptionSelector: '.profile__user-caption'
+  userCaptionSelector: '.profile__user-caption',
+  userAvatarSelector: '.profile__avatar'
 };
 
 // переменные форм
 const popupProfileEditFormElement = document.forms['edit-profile'];
 const popupAddNewCardFormElement = document.forms['add-new-card'];
+const popupEditAvatarFormElement = document.forms['editAvatar'];
 
 // селекторы попапов
 const popupProfileEditSelector = '.popup-profile-edit';
 const popupAddNewCardSelector = '.popup-add-new-card';
 const popupWithImageSelector = '.popup-zoom-image';
+const popupAvatarEditSelector = '.popup-avatar-edit';
+const popupCardDeleteSelector = '.popup-card-delete';
 
 // селектор шаблона карточки
 const cardTemplateSelector = '#card-template';
 
-// Селектор для вставки карточек
+// Селектор контейнера для карточек
 const cardContainerSelector = '.cards__list';
 
 export {
-  initialCardsArray,
   validationConfigObject,
   profileInfoSelectors,
   popupProfileEditFormElement,
   popupAddNewCardFormElement,
+  popupEditAvatarFormElement,
   popupProfileEditSelector,
   popupAddNewCardSelector,
   popupWithImageSelector,
+  popupAvatarEditSelector,
+  popupCardDeleteSelector,
   cardTemplateSelector,
-  cardContainerSelector
+  cardContainerSelector,
 };

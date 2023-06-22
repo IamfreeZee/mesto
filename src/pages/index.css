@@ -29,6 +29,7 @@
 @import url(../blocks/card/__button-like/card__button-like.css);
 @import url(../blocks/card/__button-like/_clicked/card__button-like_clicked.css);
 @import url(../blocks/card/__button-delete/card__button-delete.css);
+@import url(../blocks/card/__like-counter/card__like-counter.css);
 
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__text/footer__text.css);

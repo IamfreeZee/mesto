@@ -27,7 +27,8 @@ import PopupWithForm from '../components/PopupWithForm';
 import PopupCardDelete from '../components/PopupCardDelete.js';
 import Api from '../components/Api.js';
 
-const defaultButtonText = 'Сохранить'
+let userId = '';
+const defaultButtonText = 'Сохранить';
 
 // функция создания карточки
 function renderCard (dataObject) {
@@ -121,10 +122,10 @@ popupProfileEdit.setEventListeners();
 
 // создание экземпляра класса попапа добавления новой карточки
 const popupAddNewCard = new PopupWithForm(popupAddNewCardSelector, (dataObject) => {
-  Promise.all([api.getUserInfo(), api.addNewCard(dataObject)])
-    .then(([userDataObj, cardDataObj]) => {
-      cardDataObj.userId = userDataObj._id
-      section.addItemPrepend(renderCard(cardDataObj))
+  api.addNewCard(dataObject)
+    .then((resObj) => {
+      resObj.userId = userId
+      section.addItemPrepend(renderCard(resObj))
       popupAddNewCard.closePopup()
     })
     .catch((err) => {
@@ -177,9 +178,10 @@ profileAvatarButtonElement.addEventListener('click', () => {
   popupAvatarEdit.openPopup();
 });
 
-// запрос массива изначальных карточек
+// запрос данных о пользователе и массива изначальных карточек
 api.getData()
   .then(([userDataObj, cardsArray]) => {
+    userId = userDataObj._id
     userInfo.setUserInfo(userDataObj)
     cardsArray.forEach((card) => {
       card.userId = userDataObj._id
